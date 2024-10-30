@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: worker
-        image: scaling_kubernetes_hpa_vpa/worker:latest
+        image: narsic/scaling_kubernetes_hpa_vpa:latest
         env:
         - name: REDIS_HOST
           value: "redis"
