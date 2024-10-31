@@ -16,5 +16,7 @@ spec:
       - name: worker
         image: narsic/scaling_kubernetes_hpa_vpa:latest
         env:
-        - name: REDIS_HOST
-          value: "redis"
+          - name: REDIS_HOST
+            value: $(REDIS_SERVICE_HOST)  # Adjust based on your service name
+          - name: REDIS_PORT
+            value: $(REDIS_SERVICE_PORT)
