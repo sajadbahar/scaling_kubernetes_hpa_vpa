@@ -1,0 +1,40 @@
+# Horizontal and Vertical Pod Autoscaler configuration to test Kubernetes auto-scaling.
+# This configuration will adjust the deployment scale based on CPU and memory utilization.
+
+# Horizontal Pod Autoscaler (HPA)
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: sample-combined-hpa
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: sample-deployment
+  minReplicas: 2   # Set minimum replica count
+  maxReplicas: 10  # Set maximum replica count
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70  # CPU usage target (in %)
+
+---
+
+# Vertical Pod Autoscaler (VPA)
+# Automatically adjusts resource requests and limits based on actual usage.
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: sample-combined-vpa
+  namespace: default
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: sample-deployment
+  updatePolicy:
+    updateMode: "Auto"  # Enable automatic scaling based on VPA recommendations.
