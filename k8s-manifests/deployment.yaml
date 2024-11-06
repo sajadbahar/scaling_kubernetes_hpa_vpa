@@ -15,6 +15,13 @@ spec:
       containers:
       - name: worker
         image: narsic/scaling_kubernetes_hpa_vpa:latest
+        resources:
+          requests:
+            cpu: "10m"       # Define CPU requests
+            memory: "12Mi"   # Define memory requests (optional)
+          limits:
+            cpu: "50m"       # Define CPU limits
+            memory: "25Mi"   # Define memory limits (optional)
         env:
           - name: REDIS_HOST
             value: $(REDIS_SERVICE_HOST)  # Adjust based on your service name
