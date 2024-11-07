@@ -1,9 +1,11 @@
+# Kubernetes Deployment for worker service
+# Defines a Deployment for autoscaling tests, running a worker service with specified resource requests and limits.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: worker
 spec:
-  replicas: 1
+  replicas: 1  # Initial number of replicas, set by Horizontal Pod Autoscaler (HPA)
   selector:
     matchLabels:
       app: worker
@@ -14,14 +16,14 @@ spec:
     spec:
       containers:
       - name: worker
-        image: narsic/scaling_kubernetes_hpa_vpa:latest
+        image: ${WORKER_IMAGE:-sajadbahar/scaling_kubernetes_hpa_vpa:latest} # Default if env variable is not set
         resources:
           requests:
-            cpu: "10m"       # Define CPU requests
-            memory: "12Mi"   # Define memory requests (optional)
+            cpu: "10m"       # Minimum CPU requested for Pod scheduling
+            memory: "12Mi"   # Minimum memory requested for Pod scheduling
           limits:
-            cpu: "50m"       # Define CPU limits
-            memory: "25Mi"   # Define memory limits (optional)
+            cpu: "50m"       # Maximum CPU allowed per Pod
+            memory: "25Mi"   # Maximum memory allowed per Pod
         env:
           - name: REDIS_HOST
             value: $(REDIS_SERVICE_HOST)  # Adjust based on your service name

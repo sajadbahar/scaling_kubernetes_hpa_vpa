@@ -1,3 +1,5 @@
+# Horizontal Pod Autoscaler (HPA) for the worker Deployment
+# Adjusts the number of replicas based on CPU utilization thresholds.
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -6,13 +8,13 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: worker
-  minReplicas: 1
-  maxReplicas: 5
+    name: worker  # Name of the deployment to scale
+  minReplicas: 1  # Minimum number of Pods
+  maxReplicas: 5  # Maximum number of Pods
   metrics:
   - type: Resource
     resource:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 70
+        averageUtilization: 70  # Target average CPU utilization per Pod

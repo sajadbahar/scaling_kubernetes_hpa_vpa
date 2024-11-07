@@ -1,3 +1,5 @@
+# Vertical Pod Autoscaler (VPA) for the worker Deployment
+# Adjusts CPU and memory requests for Pods based on observed usage patterns.
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
 metadata:
@@ -6,6 +8,6 @@ spec:
   targetRef:
     apiVersion: "apps/v1"
     kind: Deployment
-    name: worker
+    name: worker  # Deployment to which the VPA applies
   updatePolicy:
-    updateMode: "Auto"
+    updateMode: "Auto"  # Mode of VPA; Auto allows automatic resource adjustments
