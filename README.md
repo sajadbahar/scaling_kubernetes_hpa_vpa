@@ -1,3 +1,4 @@
+[![Deploy to Kubernetes](https://github.com/sajadbahar/scaling_kubernetes_hpa_vpa/actions/workflows/deploy.yaml/badge.svg)](https://github.com/sajadbahar/scaling_kubernetes_hpa_vpa/actions/workflows/deploy.yaml)
 # Kubernetes Scaling with HPA and VPA
 
 This repository demonstrates the setup and configuration of Kubernetes Horizontal Pod Autoscaler (HPA) and Vertical Pod Autoscaler (VPA) to achieve efficient scaling in a microservice environment. It includes manifests and configurations for deploying a sample application on Kubernetes with scaling capabilities.
