@@ -104,3 +104,4 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE.md)
 ---
 
 This repository is a demonstration of Kubernetes autoscaling features and is intended for learning purposes.
+Please Read the Medium Article here [Efficient Scaling in Kubernetes with HPA + VPA](https://medium.com/@sajadbahar/efficient-scaling-in-kubernetes-with-hpa-vpa-b17bd9183d03)
